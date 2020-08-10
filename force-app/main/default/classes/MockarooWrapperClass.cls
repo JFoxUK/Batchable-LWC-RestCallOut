@@ -52,4 +52,39 @@ public with sharing class MockarooWrapperClass {
     }
 }
 //EXAMPLE RESPONSE:
-//{"Contact":{"Firstname":"Shalne","Lastname":"Bason","Email":"sbason0@canalblog.com","Gender":"Female","Mailing_Street":"4 Glacier Hill Lane","Mailing_City":"Kingston","Mailing_County":"England","Mailing_Country":"United Kingdom","Mailing_Post_Code":"DT10","Mobile_Number":"+44 440 964 4247","External_ID":"GZPI907POXHC225M39"}}
+//
+// {
+//     "Contact":{
+//             "Firstname":"Shalne",
+//             "Lastname":"Bason",
+//             "Email":"sbason0@canalblog.com",
+//             "Gender":"Female",
+//             "Mailing_Street":"4 Glacier Hill Lane",
+//             "Mailing_City":"Kingston",
+//             "Mailing_County":"England",
+//             "Mailing_Country":"United Kingdom",
+//             "Mailing_Post_Code":"DT10",
+//             "Mobile_Number":"+44 440 964 4247",
+//             "External_ID":"GZPI907POXHC225M39"
+//     }
+// }
+
+// EXAMPLE OF SERIALISED CONTACT FROM SALESFORCE:
+// [{
+//     "attributes":{
+//         "type":"Contact",
+//         "url":"/services/data/v49.0/sobjects/Contact/0034K000002hbVnQAI"
+//     },
+//     "Id":"0034K000002hbVnQAI",
+//     "FirstName":"Rose",
+//     "LastName":"Gonzalez"
+// },
+// {
+//     "attributes":{
+//         "type":"Contact",
+//         "url":"/services/data/v49.0/sobjects/Contact/0034K000002hbVoQAI"
+//     },
+//     "Id":"0034K000002hbVoQAI",
+//     "FirstName":"Sea",
+//     "LastName":"Smithalez"
+// }
