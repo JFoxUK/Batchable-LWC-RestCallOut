@@ -1,5 +1,7 @@
 public with sharing class MockarooWrapperClass {
 
+    public JSONContact mockarooContact;
+    
     public class JSONContact {
         public String Firstname;
         public String Lastname;
@@ -20,7 +22,7 @@ public with sharing class MockarooWrapperClass {
         System.debug('ENTERING  WRAPPER CLASS');
         System.debug('THE JSON STRING IS >>> ' + json);
 
-        JSONContact [] results = (JSONContact []) System.JSON.deserialize(json, JSONContact [].class);
+        List<JSONContact> results = (List<JSONContact>) System.JSON.deserialize(json, List<JSONContact>.class);
         List<Contact> contactListToInsert = new List<Contact>();
 
         System.debug('THE JSON STRING HAS BEEN CONVERTED INTO THESE OBJECTS >>> ' + results);
@@ -87,7 +89,6 @@ public with sharing class MockarooWrapperClass {
 //         "External_ID":"EQFJ957QAFRY260A80"
 //         }
 // ]
-
 
 // EXAMPLE OF SERIALISED CONTACT FROM SALESFORCE:
 // [{
