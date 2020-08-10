@@ -21,12 +21,12 @@ public with sharing class MockarooWrapperClass {
     public static List<Contact> parse(String json) {
 
         System.debug('ENTERING  WRAPPER CLASS');
-        System.debug(json);
+        System.debug('THE JSON STRING IS >>> ' + json);
 
         List<JSONContact> results = (List<JSONContact>) System.JSON.deserialize(json, List<JSONContact>.class);
         List<Contact> contactListToInsert = new List<Contact>();
 
-        System.debug(results);
+        System.debug('THE JSON STRING HAS BEEN CONVERTED INTO THESE OBJECTS >>> ' + results);
 
         for(JSONContact r : results){
             System.debug(r.Firstname);
@@ -44,10 +44,10 @@ public with sharing class MockarooWrapperClass {
                 MobilePhone = r.Mobile_Number,
                 External_ID__c = r.External_ID
             );
-            System.debug(c);
+            System.debug('The ' + r + ' JSON STRING IS NOW ' + c +' CONTACT');
             contactListToInsert.add(c);
         }
-        System.debug(contactListToInsert);
+        System.debug('LIST OF CONTACTS ARE>>> ' + contactListToInsert);
         return contactListToInsert;
     }
 }
