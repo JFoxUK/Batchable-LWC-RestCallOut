@@ -1,8 +1,5 @@
 public with sharing class MockarooWrapperClass {
 
-
-    // public JSONContact recievedContact;
-
     public class JSONContact {
         public String Firstname;
         public String Lastname;
@@ -23,7 +20,7 @@ public with sharing class MockarooWrapperClass {
         System.debug('ENTERING  WRAPPER CLASS');
         System.debug('THE JSON STRING IS >>> ' + json);
 
-        List<JSONContact> results = (List<JSONContact>) System.JSON.deserialize(json, List<JSONContact>.class);
+        JSONContact [] results = (JSONContact []) System.JSON.deserialize(json, JSONContact [].class);
         List<Contact> contactListToInsert = new List<Contact>();
 
         System.debug('THE JSON STRING HAS BEEN CONVERTED INTO THESE OBJECTS >>> ' + results);
@@ -51,23 +48,46 @@ public with sharing class MockarooWrapperClass {
         return contactListToInsert;
     }
 }
+
+// ISSUES:
+// WHEN MULTIPLE CONTACTS ARE RECIEVED, THEY ARE NULL WHEN DESERIALISED.
+// WHEN ONE CONTACT IS RECIVED IT IS EXPECTING [] SO THORWS MALFORMED ERROR
+
+
 //EXAMPLE RESPONSE:
 //
-// {
-//     "Contact":{
-//             "Firstname":"Shalne",
-//             "Lastname":"Bason",
-//             "Email":"sbason0@canalblog.com",
-//             "Gender":"Female",
-//             "Mailing_Street":"4 Glacier Hill Lane",
-//             "Mailing_City":"Kingston",
-//             "Mailing_County":"England",
-//             "Mailing_Country":"United Kingdom",
-//             "Mailing_Post_Code":"DT10",
-//             "Mobile_Number":"+44 440 964 4247",
-//             "External_ID":"GZPI907POXHC225M39"
-//     }
-// }
+// [
+//     {
+//         "Contact":{
+//         "Firstname":"Johnathon",
+//         "Lastname":"Blei",
+//         "Email":"jblei0@privacy.gov.au",
+//         "Gender":"Male",
+//         "Mailing_Street":"09 Lakewood Gardens Terrace",
+//         "Mailing_City":"Horton",
+//         "Mailing_County":"England",
+//         "Mailing_Country":"United Kingdom",
+//         "Mailing_Post_Code":"BS37",
+//         "Mobile_Number":"+44 484 340 6443",
+//         "External_ID":"XOVY702GHWKO130P31"
+//         }
+//     },
+//     {
+//         "Contact":{
+//         "Firstname":"Terence",
+//         "Lastname":"Aikenhead",
+//         "Email":"taikenhead1@ycombinator.com",
+//         "Gender":"Male",
+//         "Mailing_Street":"4799 Dwight Plaza",
+//         "Mailing_City":"Kingston",
+//         "Mailing_County":"England",
+//         "Mailing_Country":"United Kingdom",
+//         "Mailing_Post_Code":"DT10",
+//         "Mobile_Number":"+44 143 672 4785",
+//         "External_ID":"EQFJ957QAFRY260A80"
+//         }
+// ]
+
 
 // EXAMPLE OF SERIALISED CONTACT FROM SALESFORCE:
 // [{
@@ -87,4 +107,5 @@ public with sharing class MockarooWrapperClass {
 //     "Id":"0034K000002hbVoQAI",
 //     "FirstName":"Sea",
 //     "LastName":"Smithalez"
-// }
+//     }
+// ]
