@@ -12,7 +12,7 @@ global class RecordBatchCreateAccounts implements Database.Batchable<sObject>, D
 
         HttpResponse response = MockarooHTTPRequest.mockarooGetContacts(amount);
         List<Contact> contacts = MockarooWrapperClass.parse(response.getBody());
-        System.debug('contacts is ' + contacts);
+        System.debug('contacts are ' + contacts);
 
         return contacts;
     }
@@ -24,7 +24,7 @@ global class RecordBatchCreateAccounts implements Database.Batchable<sObject>, D
         for (Database.SaveResult sr : srList) {
             if (sr.isSuccess()) {
                 // Operation was successful, so get the ID of the record that was processed
-                System.debug('Successfully inserted Contact. Contact ID: ' + sr.getId());
+                System.debug('Successfully inserted Contact. Contact IDs: ' + sr.getId());
             }
             else {
                 // Operation failed, so get all errors                
