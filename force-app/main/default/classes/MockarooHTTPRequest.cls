@@ -26,3 +26,5 @@ public with sharing class MockarooHTTPRequest {
         }
     }
 }
+
+//API & KEY >> https://my.api.mockaroo.com/random_contact/NUMBER_OF_ROWS/CONTACTS_WANTED.json?key=0d841430
