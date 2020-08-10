@@ -23,7 +23,7 @@ public with sharing class MockarooWrapperClass {
         System.debug('ENTERING  WRAPPER CLASS');
         System.debug(json);
 
-        List<JSONContact> results = (List<JSONContact>) System.JSON.deserialize(json, JSONContact.class);
+        List<JSONContact> results = (List<JSONContact>) System.JSON.deserialize(json, List<JSONContact>.class);
         List<Contact> contactListToInsert = new List<Contact>();
 
         System.debug(results);
