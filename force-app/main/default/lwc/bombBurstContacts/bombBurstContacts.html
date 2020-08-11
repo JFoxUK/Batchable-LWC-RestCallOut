@@ -1,0 +1,15 @@
+<template>
+    <lightning-card icon-name="custom:custom63">
+        <h2 class="slds-card__header-title">Bomb Burst Contacts!</h2>
+        <div class="slds-card__body slds-card__body_inner">How many random contacts do you wish to create?</div>
+            <lightning-input type="number" name="input1" label="Enter a number" value={numberInput}></lightning-input>
+            <button class="slds-button slds-button_brand" onclick={createRecords}>Kabooom!</button>
+            <template if:true = {jobId}>
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" role="alert">
+                    <span class="slds-assistive-text">warning</span>
+                    <span class="slds-icon_container slds-icon-utility-warning slds-m-right_x-small" title="Description of icon when needed"></span>
+                    <h2>Your Job ID is - {jobId}.</h2>
+                </div>
+            </template>
+    </lightning-card >
+</template>
