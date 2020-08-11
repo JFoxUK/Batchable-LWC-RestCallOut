@@ -1,3 +1,0 @@
-<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,lightning:availableForFlowScreens" access="global" >
-	<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6689443152052547584" height="587" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-</aura:component>
