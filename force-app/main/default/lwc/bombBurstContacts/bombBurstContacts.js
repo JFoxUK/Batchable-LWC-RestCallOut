@@ -17,20 +17,24 @@ export default class BombBurstContacts extends LightningElement {
     @track status;
     @track progress = 500;  
   
+    //Captures user input for number of records they wish to create
     onChange(event){
         this.numberInput = event.target.value;
         console.log('this.numberInput' + this.numberInput);
     }
     
+    //Calls the apex class BatchCreateContactController and method initiateContactBatch - passing in the desired numbr
     createRecords(){
-        
         initiateContactBatch({ numberOfRecords : this.numberInput })
             .then(result => {
+                //Apex method returns type ID
                 this.jobID = result;
                 this.processing = true;
+
                 console.log('this.jobID' + this.jobID);
                 console.log('this.processing' + this.processing);
 
+                //Used to initiate teh connectedCallback to refresh the status of the job
                 this.connectedCallback();
                 
             })
@@ -41,14 +45,17 @@ export default class BombBurstContacts extends LightningElement {
             });
     }
 
+    //connectedCallback to repeadedly call the Apex method IOT SOQL the batch job status
     connectedCallback() {  
         if(this.jobID != null){
+
             this._interval = setInterval(() => {  
                 
                 
                //this.getStatus();
 
-               this.getBatchJobStatus({ jobID : this.jobID})
+
+               getBatchJobStatus({ jobID : this.jobID})
                 .then(result => {
                     this.record = result;
                     console.log('this.record' + this.record);
@@ -58,17 +65,23 @@ export default class BombBurstContacts extends LightningElement {
                     console.log('this.error' + this.error);
                 });
                 
+
                 this.progress = this.progress + 25000;
                 console.log('this.progress' + this.progress);
                 
+
                 if ( this.progress === 200000 ) {  
                     clearInterval(this._interval);  
                 }  
-            }, this.progress);  
+
+            }, 
+            
+            this.progress);  
         }
   
     }  
 
+    //* Moved to within the callback method */
     // getStatus(){
     //     getBatchJobStatus({ jobID : jobID})
     //     .then(result => {
