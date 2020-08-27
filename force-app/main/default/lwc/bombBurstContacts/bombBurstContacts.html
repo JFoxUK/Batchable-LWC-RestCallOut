@@ -1,15 +1,62 @@
 <template>
-    <lightning-card icon-name="custom:custom63">
-        <h2 class="slds-card__header-title">Bomb Burst Contacts!</h2>
-        <div class="slds-card__body slds-card__body_inner">How many random contacts do you wish to create?</div>
-            <lightning-input type="number" name="input1" label="Enter a number" value={numberInput}></lightning-input>
-            <button class="slds-button slds-button_brand" onclick={createRecords}>Kabooom!</button>
-            <template if:true = {jobId}>
+    <lightning-card>
+        <div style="padding: 2%;">
+            <h2 class="slds-card__header-title">Bomb Burst Contacts!</h2>
+            <div class="slds-card__body slds-card__body_inner">How many random contacts do you wish to create?</div>
+            <lightning-input type="number" name="input1" label="Enter a number" value={numberInput} onchange={onChange}></lightning-input>
+            <div class="slds-card__body slds-card__body_inner">
+                <button style='align-content: center' class="slds-button slds-button_brand" onclick={createRecords}>Kabooom!</button>
+            </div>
+            <template if:true = {jobID}>
                 <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" role="alert">
                     <span class="slds-assistive-text">warning</span>
-                    <span class="slds-icon_container slds-icon-utility-warning slds-m-right_x-small" title="Description of icon when needed"></span>
-                    <h2>Your Job ID is - {jobId}.</h2>
+                    <h2>Your Job ID is - {jobID}.</h2>
                 </div>
             </template>
+            <template if:true = {createError}>
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+                    <span class="slds-assistive-text">warning</span>
+                    <h2>An error in creation - {createError}.</h2>
+                </div>
+            </template>
+            <template if:true = {record}>
+                <lightning-progress-ring style='align-content: center' value ={jobPercentage}> </lightning-progress-ring>
+                <div>{record.totalJobItems}</div> 
+                <div>{record.jobItemsProcessed}</div>
+                <div>{record.status}</div>
+            </template>
+            <template if:true = {error}>
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+                    <span class="slds-assistive-text">warning</span>
+                    <h2>An error callback - {error}.</h2>
+                </div>
+            </template>
+
+
+            <template if:true = {numberInput}>
+                <div class="slds-card__body slds-card__body_inner">
+                    <lightning-tile label="Debug Info" href="#">
+                        <div class="slds-card__body slds-card__body_inner">
+                            
+                            <p style="padding-top: 0.5%"> <lightning-badge label=numberInput></lightning-badge> -> {numberInput}</p>
+                            <p style="padding-top: 0.5%"> <lightning-badge label=jobID></lightning-badge> -> {jobID}</p>
+                            <p style="padding-top: 0.5%"> <lightning-badge label=createError></lightning-badge> -> {createError}</p>
+                            <p style="padding-top: 0.5%"> <lightning-badge label=error>></lightning-badge> -> {error}</p>
+                            <p style="padding-top: 0.5%"> <lightning-badge label=record></lightning-badge> -> {record}</p>
+                            <p style="padding-top: 0.5%"> <lightning-badge label=processing></lightning-badge> -> {processing}</p>
+                            <p style="padding-top: 0.5%"> <lightning-badge label=jobPercentage></lightning-badge> -> {jobPercentage}</p>
+                            <p style="padding-top: 0.5%"> <lightning-badge label=totalJobItems></lightning-badge> -> {totalJobItems}</p>
+                            <p style="padding-top: 0.5%"> <lightning-badge label=jobItemsProcessed></lightning-badge> -> {jobItemsProcessed}</p>
+                            <p style="padding-top: 0.5%"> <lightning-badge label=status></lightning-badge> -> {status}</p>
+                            <p style="padding-top: 0.5%"> <lightning-badge label=progress></lightning-badge> -> {progress}</p>
+                            
+                        </div>
+                    </lightning-tile>
+                </div>
+            </template>
+
+
+
+        </div>
     </lightning-card >
 </template>
