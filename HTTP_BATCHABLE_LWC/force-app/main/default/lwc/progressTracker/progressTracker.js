@@ -12,7 +12,6 @@ export default class progressTracker extends LightningElement {
     @track jobItemsProcessed;
     @track viewProgress; 
     @track status;
-    @track complete;
     @track showDebug = false;
 
 
@@ -44,7 +43,7 @@ export default class progressTracker extends LightningElement {
         
         this.jobPercentage = (this.jobItemsProcessed / this.totalJobItems)*100;
 
-        if(jobPercentage === 100){
+        if(this.jobPercentage === 100){
             this.processing = false;
         }
 
