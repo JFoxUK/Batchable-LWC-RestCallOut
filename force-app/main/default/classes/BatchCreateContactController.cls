@@ -9,10 +9,10 @@ public with sharing class BatchCreateContactController {
         
     }
 
-    @AuraEnabled(cacheable = true) 
+    @AuraEnabled
     public static AsyncApexJob getBatchJobStatus(Id jobID){
         System.debug('ENTERED GET BATCH JOB STATUS');
-        AsyncApexJob jobInfo = [SELECT Status, NumberOfErrors,JobItemsProcessed,TotalJobItems FROM AsyncApexJob WHERE Id = :jobID];
+        AsyncApexJob jobInfo = [SELECT ID, Status, NumberOfErrors, JobItemsProcessed, TotalJobItems FROM AsyncApexJob WHERE Id = :jobID];
         return jobInfo;
     }
 }

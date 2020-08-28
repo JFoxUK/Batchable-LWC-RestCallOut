@@ -1,0 +1,36 @@
+<template>
+    
+    <div class="slds-align_absolute-center" style="padding: 5%;">  
+        <button class="slds-button slds-button_success slds-align_absolute-center"  style="margin: 2%;" onclick={viewProgressTracker}>View Progress!</button> 
+        <button class="slds-button slds-button_destructive slds-align_absolute-center"  style="margin: 2%;" onclick={toggleAccordian}>Show Debug</button>
+        
+    </div>  
+    <template if:true = {viewProgress}>
+        <div class="slds-card__body slds-card__body_inner slds-border_bottom slds-border_top">
+            <div style="padding: 5%;" class="slds-align_absolute-center">
+                <lightning-progress-ring size="large" value={jobPercentage} variant="base-autocomplete"></lightning-progress-ring>
+            </div>
+            <div style="padding: 5%;">
+                <lightning-progress-bar value={jobPercentage} size="large" variant="circular"></lightning-progress-bar>
+            </div>
+        </div>
+    </template>
+    <lightning-card>
+        <template if:true = {showDebug}>
+            <div class="slds-card__body slds-card__body_inner">
+                <lightning-tile label="Debug Info" href="#">
+                    <div class="slds-card__body slds-card__body_inner">
+                        <p style="padding-top: 0.5%"> <lightning-badge label=jobID></lightning-badge> -> {jobID}</p>
+                        <p style="padding-top: 0.5%"> <lightning-badge label=error>></lightning-badge> -> {error}</p>
+                        <p style="padding-top: 0.5%"> <lightning-badge label=record></lightning-badge> -> (ID){record.ID} - (STATUS){record.Status} - (ITEMS){record.TotalJobItems} - (ERRORS){record.NumberOfErrors}</p>
+                        <p style="padding-top: 0.5%"> <lightning-badge label=processing></lightning-badge> -> {processing}</p>
+                        <p style="padding-top: 0.5%"> <lightning-badge label=jobPercentage></lightning-badge> -> {jobPercentage}</p>
+                        <p style="padding-top: 0.5%"> <lightning-badge label=totalJobItems></lightning-badge> -> {totalJobItems}</p>
+                        <p style="padding-top: 0.5%"> <lightning-badge label=jobItemsProcessed></lightning-badge> -> {jobItemsProcessed}</p>
+                        <p style="padding-top: 0.5%"> <lightning-badge label=status></lightning-badge> -> {status}</p>
+                    </div>
+                </lightning-tile>
+            </div>
+        </template>
+    </lightning-card>        
+</template>
